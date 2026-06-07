@@ -56,4 +56,13 @@ router.get("/getBySeance/:ID_Seance", async (req, res) => {
   }
 })
 
+router.get("/getall", async (req, res) => {
+  try {
+    const data = await performance.getAll()
+    res.status(200).json({ message: "Toutes les performances", ok: true, data: data })
+  } catch (err) {
+    res.status(500).json({ message: "Erreur recherche", ok: false, error: err.message })
+  }
+})
+
 module.exports = router;

@@ -13,6 +13,14 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Logger – affiche chaque requête dans la console
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  if (Object.keys(req.query).length) console.log("  query  :", req.query);
+  if (Object.keys(req.body ?? {}).length) console.log("  body   :", req.body);
+  next();
+});
+
 app.get('/', (req, res) => {
   res.send('API Kinésithérapie en ligne')
 })
@@ -35,7 +43,6 @@ app.use("/mesure", mesure)
 const performance = require("./routes/performance")
 app.use("/performance", performance)
 
-// Gestionnaire d'erreurs global – renvoie toujours les en-têtes CORS
 app.use((err, req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");

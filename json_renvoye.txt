@@ -1,0 +1,28 @@
+Ajoute un bouton consulter graphique (si la séance est lancée) et ça va afficher un graphique. Si type = "DATA" alors on reçoit une data de ce type:
+
+{
+  "type": "DATA",
+  "nom_exercice": 
+  "nom_mouvement":
+  "numero_repetition":
+  "numero_serie":
+  "id_seance": 
+
+
+  "cote": 
+  "tension": 
+  "temps_contraction_ms": 
+  "temps_relaxation_ms": 
+  "latence_ms": 
+  "amplitude": 
+  "timestamp": 
+}
+
+et faut tracer un graphique de l'amplitude en fonction du timestamp
+
+
+Type de Signal	Émetteur Type	Destinataire Type	Format de data	Description / Comportement attendu
+BIP	Client Test / Frontend	Tous les Frontends	null	Déclenche un signal sonore (Beep 800Hz / MP3).
+START	Frontend KinéUI	Capteurs / Objets Connectés	Object (Fiche séance)	Démarre la séance et transmet toutes les données nécessaires aux capteurs.
+KILL	Frontend KinéUI	Capteurs / Objets Connectés	null	Arrêt d'urgence immédiat demandé par le kinésithérapeute.
+END	Capteurs / Équipement	Frontend KinéUI	null	Notification de fin d'exercice normale (la séance s'est terminée avec succès).

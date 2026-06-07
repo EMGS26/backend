@@ -24,6 +24,10 @@ class Performance {
     getBySeance(ID_Seance) {
         return db.select("Performances", ["*"], [["ID_Seance", ID_Seance]])
     }
+
+    getAll() {
+        return db.select("Performances", ["*"])
+    }
 }
 
 module.exports = Performance
